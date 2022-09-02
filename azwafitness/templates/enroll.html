@@ -1,0 +1,146 @@
+{% extends 'base.html' %} 
+{% block title %} Enrollment for Gym {% endblock title%}
+{% block head %}
+
+<h1>Join The Best Gym In Bangalore</h1>
+
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-md-3"></div>
+
+    <div class="col-md-6">
+      {% for message in messages %}
+      <div
+        class="alert alert-{{message.tags}} alert-dismissible fade show"
+        role="alert"
+      >
+        <strong></strong> {{message}}
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+      {% endfor %} {% comment %} Contact Us COde {% endcomment %}
+
+      <form action="" method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            name="FullName"
+            placeholder="Enter Your Full Name"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <input
+            type="email"
+            class="form-control mt-2"
+            value="{{user.email}}"
+            name="email"
+            placeholder="Enter Your Email"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+
+          <select class="form-control mt-2" id="gender" name="gender" required>
+            <option selected>Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <input
+            type="number"
+            class="form-control mt-2"
+            name="PhoneNumber"
+            placeholder="Enter Your Number"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <input
+            type="date"
+            class="form-control mt-2"
+            name="DOB"
+            placeholder="Date Of Birth"
+            required
+          />
+        </div>
+
+
+        <div class="form-group">
+           
+                     <select  class="form-control mt-2" id="domain" name="domain"  required>
+                     <option selected>Select Membership Plan</option>
+                          {% for  p in Membership %}
+                          
+
+<option value="{{p.plan}}">{{p.plan}} - {{p.price}} Rs</option>
+{% endfor %}
+
+</select>
+                
+
+
+            </div>
+        <div class="form-group">
+           
+                     <select  class="form-control mt-2" id="domain" name="domain"  required>
+                     <option selected> Select Trainer </option>
+                          {% for  p in SelectTrainer %}
+                          
+
+<option value="{{p.name}}">{{p.name}}</option>
+{% endfor %}
+
+</select>
+                
+
+
+            </div>
+
+            <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control mt-2"
+                  name="reference"
+                  placeholder="Refered By"
+                  
+                />
+              </div>
+
+            <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control mt-2"
+                  name="address"
+                  placeholder="Address"
+                  
+                />
+              </div>
+
+                                                      
+
+
+        <br />
+        <div class="d-grid gap-2">
+          <button class="btn btn-warning" type="submit">Enroll</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-md-3"></div>
+  </div>
+</div>
+
+{% endblock head %}
